@@ -1,33 +1,49 @@
 import re
 
 
-def rakna_ant(ord, mening):
-    return mening.lower().split().count(ord)
+def bara_ord(lista):
+    lista = [re.findall(r'[a-zA-ZåäöÅÄÖ]+', e) for e in lista]
+    return [i[0] for i in lista]
 
 
-def ord_mest_anvanda(m):
+def las_in(filnamn):
+    return open(filnamn).read().lower().split()
 
 
-def ord_minst_anvanda(n):
-    sd
+def main():
+    m = int(input('m val: '))
+    n = int(input('n val: '))
+    filnamn = 'lektion_7/test.txt'
+    fil = bara_ord(las_in(filnamn))
+
+    unika = []
+    for ord in fil:
+        if ord not in unika:
+            unika.append(ord)
+
+    antal = []
+    for unik in unika:
+        ant = 0
+        for ord in fil:
+            if ord == unik:
+                ant += 1
+        antal.append((ant, unik))
+
+    print('antal ord:', len(fil))
+    print('antal unika ord:', len(unika))
+    print(f'\nantalet {n} vanligaste:')
+
+    antal.sort()
+    for i in range(n):
+        ant, ord = antal[i]
+        print(ord, ant)
+    print(f'\nantalet {m} ovanliga:')
+
+    antal.reverse()
+    for i in range(m):
+        ant, ord = antal[i]
+        print(ord, ant)
 
 
-unika_ord = []
-unika_ord = 0
-ord = {}
-text = ''
-filnamn = 'lektion_7/test.txt'
-with open(filnamn, 'r') as f:
-    unika_ord = list(set(f.readlines()))
-    text = re.sub(r'#.*$', '', f.readlines()) 
-    unika_ord = [ord_i.replace(".", "") for ord_i in unika_ord[0].split(' ')]
-    ant_unika_ord = len(unika_ord)
-    ord = dict.fromkeys(unika_ord, 0)
-    for i in range(unika_ord):
-        ord[i] = rakna_ant(unika_ord[i], text)
-
-
-print('Antal ord:', ant_unika_ord)
-print('Alla ord:', str(unika_ord))
-print('Mest anvanda ordet:', max(ord, key=ord.get))
-print('Minst anvanda ordet:', min(ord, key=ord.get))
+if __name__ == "__main__":
+    main()
