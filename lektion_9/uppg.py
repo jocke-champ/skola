@@ -1,5 +1,6 @@
 import csv
 import matplotlib.pyplot as plt
+from uppg_1 import smooth_a, smooth_b
 
 
 def load_csv(filename):
@@ -10,18 +11,31 @@ def load_csv(filename):
     return dict
 
 
-# print(load_csv('CO2Emissions_filtered.csv'))
 data = load_csv('CO2Emissions_filtered.csv')
 landkod = ['dnk', 'fin', 'isl', 'nor', 'swe']
+colours = ['b', 'y', 'r', 'c', 'm']
 time = list(range(1960, 2015))
 data_landkod = {key: data[key] for key in data.keys() & landkod}
 
 fig, ax = plt.subplots()
 ax.set(
-    xlabel='Year', ylabel='CO2 emissions (kt)', title='Yearly Emissions of CO2 in the Nordic Countries'
+    xlabel='Year', ylabel='CO2 emissions (kt)',
+    title='Yearly Emissions of CO2 in the Nordic Countries'
     )
-for country in data_landkod.keys():
-    ax.plot(time, data_landkod[country], label=str(country))
+for country, c in zip(data_landkod.keys(), colours):
+    ax.plot(
+        time, data_landkod[country],
+        color=str(c), linestyle='dotted'
+        )
+    ax.plot(
+        time, smooth_a(data_landkod[country], 5),
+        label=str(country), color=str(c), linestyle='solid'
+        )
+    ax.plot(
+        time, smooth_b(data_landkod[country], 5),
+        color=str(c), linestyle='dashed'
+        )
+
 
 ax.legend()
 ax.grid()
