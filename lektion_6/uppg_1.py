@@ -18,8 +18,9 @@ def smooth_b(a, n):
     return r
 
 
-x = [1, 2, 6, 4, 5, 0, 1, 2]
-print('smooth_a(x, 1): ', smooth_a(x, 1))
-print('smooth_a(x, 2): ', smooth_a(x, 2))
-print('smooth_b(x, 1): ', smooth_b(x, 1))
-print('smooth_b(x, 2): ', smooth_b(x, 2))
+if __name__ == "__main__":
+    x = [1, 2, 6, 4, 5, 0, 1, 2]
+    print('smooth_a(x, 1): ', smooth_a(x, 1))
+    print('smooth_a(x, 2): ', smooth_a(x, 2))
+    print('smooth_b(x, 1): ', smooth_b(x, 1))
+    print('smooth_b(x, 2): ', smooth_b(x, 2))

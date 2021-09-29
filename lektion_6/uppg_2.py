@@ -12,6 +12,6 @@ def smooth_a(a, n):
 def round_list(a_list, ndigits):
     return [round(a_i, ndigits) for a_i in a_list]
 
-
-x = [1, 2, 6, 4, 5, 0, 1, 2]
-print('smooth_a(x, 1) rounded: ', round_list(smooth_a(x, 1), 2))
+if __name__ == "__main__":
+    x = [1, 2, 6, 4, 5, 0, 1, 2]
+    print('smooth_a(x, 1) rounded: ', round_list(smooth_a(x, 1), 2))

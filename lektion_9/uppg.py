@@ -17,12 +17,13 @@ time = list(range(1960, 2015))
 data_landkod = {key: data[key] for key in data.keys() & landkod}
 
 fig, ax = plt.subplots()
-ax.plot(time, data_landkod.values())
-
 ax.set(
     xlabel='Year', ylabel='CO2 emissions (kt)', title='Yearly Emissions of CO2 in the Nordic Countries'
     )
-ax.grid()
+for country in data_landkod.keys():
+    ax.plot(time, data_landkod[country], label=str(country))
 
+ax.legend()
+ax.grid()
 fig.savefig("test.png")
 plt.show()
