@@ -15,7 +15,8 @@ for line in enumerate(text):
     else:
         kommentar = ''
     ut = open(filnamn + '.ut.py', 'a')
-    ut.write(str(line[0]+1) + ' ' + text[line[0]] + '\t\t\t' + kommentar + '\n')
+    ut.write(
+        str(line[0]+1) + ' ' + text[line[0]] + '\t\t\t' + kommentar + '\n')
     ut.close()
 
 unika = []
